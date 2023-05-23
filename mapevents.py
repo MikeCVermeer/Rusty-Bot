@@ -10,13 +10,14 @@ async def getMapEvents(rust_socket, command = False):
         8: "Patrol Helicopter",
     }
 
+    # If we didn't get any events
     if len(events) == 0:
         print("No events found")
-        return # Gives error currently.
+        return events # Gives error currently.
 
     # Print out the events we got - for testing purposes
     for event in events:
-        name = typeToName.get(event.type, "Unknown name")
-        print(f"Event name: {name}, Event type: {event.type}, Event position: {event.x}, {event.y}, Event id: {event.id}")
+        event.name = typeToName.get(event.type, "Unknown name")
+        print(f"Event name: {event.name}, Event type: {event.type}, Event position: {event.x}, {event.y}, Event id: {event.id}")
 
     return events

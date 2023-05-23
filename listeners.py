@@ -1,6 +1,7 @@
 import asyncio
 from mapevents import getMapEvents
 import commands
+from notificationhandler import notificationHandler
 
 async def listeners(bot):
     # Listener loop
@@ -25,6 +26,9 @@ async def mapEventListener(bot):
         if mapEvent.id not in lastMapEvents:
             print(f"New event: {mapEvent.id}")
             lastMapEvents.append(mapEvent.id)
+
+            await notificationHandler(bot, mapEvent, True)
+            
         else:
             print(f"Event already seen: {mapEvent.id}")
 
