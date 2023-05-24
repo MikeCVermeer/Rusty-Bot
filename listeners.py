@@ -1,8 +1,9 @@
 import asyncio
 import time
 from mapevents import getMapEvents
+from mapmarkers import getMarkers
 import commands
-from notificationhandler import notificationHandler
+from notificationhandler import notificationHandlerEvents, notificationHandlerMarkers
 
 async def listeners(bot):
     print("Listeners started")
@@ -31,9 +32,22 @@ async def mapEventListener(bot):
                 # Check if 15 minutes have passed
                 if time.time() - recordedEvent["timestamp"] >= 15*60:
                     # 15 minutes have passed, send an update
-                    await notificationHandler(bot, mapEvent, True, True)
+                    await notificationHandlerEvents(bot, mapEvent, True, True)
                 break
         else:
             # The event was not in the list, add it
             lastMapEvents.append({"event": mapEvent, "timestamp": time.time()})
-            await notificationHandler(bot, mapEvent, True)
+            await notificationHandlerEvents(bot, mapEvent, True)
+
+
+async def markerListener(bot):
+    markers = await getMarkers(bot)
+
+    # print(markers)
+
+    for marker in markers:
+        # print(marker)
+        break
+        # await notificationHandlerMarkers(bot, marker, True)
+
+    return

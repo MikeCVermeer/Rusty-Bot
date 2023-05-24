@@ -1,6 +1,5 @@
 import asyncio
 from rustplus import RustSocket
-from mapevents import getMapEvents
 import listeners
 import commands
 
@@ -31,6 +30,12 @@ class RustyBot:
     async def listen(self):
         await listeners.listeners(self)
 
+    async def get_raw_map_data(self):
+        return await self.socket.get_raw_map_data()
+    
+    async def get_map_markers(self):
+        return await self.socket.get_markers()
+
 async def main():
     bot = RustyBot('192.248.164.111', '28088', 76561198205490971, 1102527508)
     await bot.connect()
@@ -39,9 +44,9 @@ async def main():
     # await commands.commandListener(bot)
 
     # Start listening
-    await bot.listen()
+    # await bot.listen()
     # await listeners.listeners(bot)
-    # await asyncio.gather(listeners.listeners(bot), commands.commandListener(bot))
+    await asyncio.gather(bot.listen(), listeners.markerListener(bot))
     
     await bot.disconnect()
 

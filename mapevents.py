@@ -1,3 +1,4 @@
+import math
 import string
 
 
@@ -6,10 +7,10 @@ async def getMapEvents(bot, command = False):
 
     # A dictionary of event types to their names
     typeToName = {
-        2: "Bradley",
+        2: "Bradley", # (explosions) Currently disabled
         4: "Chinook",
         5: "Cargo Ship",
-        6: "Crate",
+        6: "Crate", # Currently disabled
         8: "Patrol Helicopter",
     }
 
@@ -56,10 +57,8 @@ async def getMapEvents(bot, command = False):
     #         return "Top Right of the map"
     #     else:
     #         return "Bottom Right of the map"
-
-    # print (f"Event position: {eventX}, {eventY}")
-    # print (f"Map dimensions: {mapWidth}, {mapHeight}")
     
+
 async def determineEventLocation(bot, eventX, eventY):
     # Get the map data
     gameMap = await bot.get_raw_map_data()
@@ -69,40 +68,21 @@ async def determineEventLocation(bot, eventX, eventY):
     mapHeight = gameMap.height - (2 * mapMargin) 
     mapWidth = gameMap.width - (2 * mapMargin)
 
-    # # Grid size
-    # gridSize = 150
+    # Grid size
+    gridSize = 150
+    mapSize = mapWidth + mapHeight
 
-    # # Calculate the grid position, converting in-game coords to code coords. 
-    # gridX = int((eventX + mapWidth / 2) / gridSize) + 1
-    # gridY = int((mapHeight / 2 - eventY) / gridSize)
+    x = eventX
+    y = mapSize - eventY
 
-    # # Convert to Rust's grid system.
-    # if gridY < 26:
-    #     gridLetter = string.ascii_uppercase[gridY]  # This will get the letter equivalent of the gridY value.
-    # else:
-    #     gridLetter = string.ascii_uppercase[gridY // 26 - 1] + string.ascii_uppercase[gridY % 26]
+    if x < 0 or x >= mapSize or y < 0 or y >= mapSize:
+        return "Outside map"
 
-    # gridNumber = gridX
+    # Calculate the grid coordinates
+    gridX = string.ascii_uppercase[math.floor(x / gridSize)]
+    gridY = math.floor(y / gridSize) + 1
 
-    # print (f"Event position: {eventX}, {eventY}")
-    # print (f"Map dimensions: {mapWidth}, {mapHeight}")
-    # print (f"Grid position: {gridX}, {gridY}")
-    # print (f"Grid position: {gridLetter}, {gridNumber}")
+    # Combine the grid coordinates
+    grid = f"{gridX}{gridY - 1}"
 
-    # return f"{gridLetter}{gridNumber}"
-
-    # Calculate midpoints
-    midX = mapWidth / 2
-    midY = mapHeight / 2
-
-    # Determine the quadrant
-    if eventX < midX:
-        if eventY > midY:
-            return "Top Left of the map"
-        else:
-            return "Bottom Left of the map"
-    else:
-        if eventY > midY:
-            return "Top Right of the map"
-        else:
-            return "Bottom Right of the map"
+    return grid
