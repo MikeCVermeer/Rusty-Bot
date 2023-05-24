@@ -2,7 +2,7 @@ import math
 import string
 
 
-async def getMapEvents(bot, command = False):
+async def getMapEvents(bot, command = False, type = None):
     events = await bot.get_current_events()
 
     # A dictionary of event types to their names
@@ -16,7 +16,7 @@ async def getMapEvents(bot, command = False):
 
     TypeToRespawnTime = {
         2: None,
-        4: None,
+        4: 90,
         5: 30,
         6: None,
         8: 120,
@@ -24,8 +24,17 @@ async def getMapEvents(bot, command = False):
 
     # If we didn't get any events
     if len(events) == 0:
-        # print("No events found")
-        return events # Gives error currently.
+        return events
+    
+    if command == True:
+        # Get the event type
+        if type == None:
+            # No event type was specified
+            print("ERROR: No event type was specified")
+            return events
+        else:
+            # Filter the events by type
+            events = [event for event in events if event.type == type]
 
     # Print out the events we got - for testing purposes
     for event in events:
@@ -40,25 +49,7 @@ async def getMapEvents(bot, command = False):
         print(f"Event name: {event.name}, Event type: {event.type}, Event position: {event.x}, {event.y}, Event id: {event.id} Event Location: {grid}")
 
     return events
-
-
-    # # Calculate midpoints
-    # midX = mapWidth / 2
-    # midY = mapHeight / 2
-
-    # # Determine the quadrant
-    # if eventX < midX:
-    #     if eventY > midY:
-    #         return "Top Left of the map"
-    #     else:
-    #         return "Bottom Left of the map"
-    # else:
-    #     if eventY > midY:
-    #         return "Top Right of the map"
-    #     else:
-    #         return "Bottom Right of the map"
     
-
 async def determineEventLocation(bot, eventX, eventY):
     # Get the map data
     gameMap = await bot.get_raw_map_data()
@@ -76,7 +67,21 @@ async def determineEventLocation(bot, eventX, eventY):
     y = mapSize - eventY
 
     if x < 0 or x >= mapSize or y < 0 or y >= mapSize:
-        return "Outside map"
+        # Calculate midpoints
+        midX = mapWidth / 2
+        midY = mapHeight / 2
+
+        # Determine the quadrant
+        if eventX < midX:
+            if eventY > midY:
+                return "Top Left of the map"
+            else:
+                return "Bottom Left of the map"
+        else:
+            if eventY > midY:
+                return "Top Right of the map"
+            else:
+                return "Bottom Right of the map"
 
     # Calculate the grid coordinates
     gridX = string.ascii_uppercase[math.floor(x / gridSize)]

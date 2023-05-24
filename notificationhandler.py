@@ -6,6 +6,5 @@ async def notificationHandlerEvents(bot, event, mapEvent = False, Update = False
 
     return
 
-async def notificationHandlerMarkers(bot, marker, raid = False):
-    if raid == True:
-        await bot.send_message(f"Raid zone detected at: {marker.grid} <-- Rusty Bot")
+async def notificationHandlerRaids(bot, raid):
+    await bot.send_message(f"Raid zone detected at: {raid.grid} <-- Rusty Bot")

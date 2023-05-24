@@ -1,16 +1,16 @@
 import asyncio
 import time
 from mapevents import getMapEvents
-from mapmarkers import getMarkers
+from raidzones import getRaidZone
 import commands
-from notificationhandler import notificationHandlerEvents, notificationHandlerMarkers
+from notificationhandler import notificationHandlerEvents, notificationHandlerRaids
 
 async def listeners(bot):
     print("Listeners started")
     # Listener loop
     while True:
         # Check for events on the map
-        await mapEventListener(bot)
+        await asyncio.gather(mapEventListener(bot), raidListener(bot))
 
         # Sleep for 10 seconds
         await asyncio.sleep(10)
@@ -39,15 +39,18 @@ async def mapEventListener(bot):
             lastMapEvents.append({"event": mapEvent, "timestamp": time.time()})
             await notificationHandlerEvents(bot, mapEvent, True)
 
+foundRaidZones = []
 
-async def markerListener(bot):
-    markers = await getMarkers(bot)
+async def raidListener(bot):
+    raids = await getRaidZone(bot)
 
-    # print(markers)
-
-    for marker in markers:
-        # print(marker)
-        break
-        # await notificationHandlerMarkers(bot, marker, True)
+    for raid in raids:
+        # If the raid is not in the list, add it
+        if raid not in foundRaidZones:
+            foundRaidZones.append(raid)
+            await notificationHandlerRaids(bot, raid)
+        else:
+            # The raid was already found, do nothing
+            pass
 
     return
