@@ -47,7 +47,7 @@ class RustyBot:
 
 async def main():
     options = CommandOptions(prefix='!')
-    bot = RustyBot('ip', 'port', id, token, command_options=options)
+    bot = RustyBot('IP', 'PORT', STEAMID, TOKEN, command_options=options)
     await bot.connect()
 
     # Start listening
