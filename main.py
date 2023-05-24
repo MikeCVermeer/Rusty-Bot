@@ -31,7 +31,7 @@ class RustyBot:
 
     async def version(self):
         print("Rusty Bot version: 0.1 [ALPHA]")
-        await self.socket.send_team_message("Rusty Bot version: Alpha 0.1 <-- RustyBot")
+        await self.socket.send_team_message("Rusty Bot version: V0.1 [Alpha] <-- RustyBot")
 
     async def listen(self):
         await listeners.listeners(self)
@@ -47,7 +47,7 @@ class RustyBot:
 
 async def main():
     options = CommandOptions(prefix='!')
-    bot = RustyBot('ip', 'port', id, token, command_options=options)
+    bot = RustyBot('192.248.164.111', '28088', 76561198205490971, -1577019259, command_options=options)
     await bot.connect()
 
     # Start listening

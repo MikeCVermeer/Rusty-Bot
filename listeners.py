@@ -2,18 +2,25 @@ import asyncio
 import time
 from mapevents import getMapEvents
 from raidzones import getRaidZone
-import commands
 from notificationhandler import notificationHandlerEvents, notificationHandlerRaids
+from timers import timer
 
 async def listeners(bot):
     print("Listeners started")
     # Listener loop
     while True:
         # Check for events on the map
-        await asyncio.gather(mapEventListener(bot), raidListener(bot))
+        await asyncio.gather(mapEventListener(bot), raidListener(bot), timerListener(bot))
 
         # Sleep for 10 seconds
         await asyncio.sleep(10)
+
+    return
+
+# Timer listener
+async def timerListener(bot):
+    # Check if a timer has expired
+    await timer(bot)
 
     return
 

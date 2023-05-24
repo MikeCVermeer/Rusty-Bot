@@ -17,6 +17,21 @@ async def commandListener(bot):
         await bot.send_message(f"Current server population is: {info.players} / {info.max_players} players. <-- Rusty Bot")
 
     @bot.socket.command
+    async def version(command : Command):
+        await bot.version()
+
+    @bot.socket.command
+    async def help(command : Command):
+        await bot.send_message("Rusty Bot commands:")
+        await bot.send_message("- !help - Displays this message.")
+        await bot.send_message("- !version - Displays the current version of Rusty Bot.")
+        await bot.send_message("- !pop - Displays the current server population.")
+        await bot.send_message("- !disconnect - Disconnects Rusty Bot from the server.")
+        await bot.send_message("- !heli - Displays the current location of the Helicopter.")
+        await bot.send_message("- !chinook - Displays the current location of the Chinook.")
+        await bot.send_message("- !cargo - Displays the current location of the Cargoship.")
+
+    @bot.socket.command
     async def heli(command : Command):
         helis = await getMapEvents(bot.socket, True, 8)
         for heli in helis:
