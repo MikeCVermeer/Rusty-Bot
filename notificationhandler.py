@@ -1,9 +1,7 @@
-async def notificationHandler(bot, event, mapEvent = False):
-    print("Notification handler called")
+async def notificationHandler(bot, event, mapEvent = False, Update = False):
     if mapEvent == True:
-        print("Event is true")
-        
-        await bot.send_message(f"New event: {event.name} at {event.x}, {event.y}")
-
+        await bot.send_message(f"Map event: {event.name} just spawned at: {event.grid}. A new {event.name} will spawn in roughly {event.respawnTime} minutes. <-- Rusty Bot")
+    elif mapEvent == True and Update == True:
+        await bot.send_message(f"Map event: {event.name} is currently located at: {event.grid} <-- Rusty Bot")
 
     return

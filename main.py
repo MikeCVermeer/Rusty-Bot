@@ -2,6 +2,7 @@ import asyncio
 from rustplus import RustSocket
 from mapevents import getMapEvents
 import listeners
+import commands
 
 class RustyBot:
     def __init__(self, ip, port, steamid, playertoken):
@@ -12,26 +13,35 @@ class RustyBot:
         self.socket = RustSocket(self.ip, self.port, self.steamid, self.playertoken)
 
     async def connect(self):
-        await self.socket.connect()
+        try:
+            await self.socket.connect()
+            print("Rusty Bot connected to server")
+            await self.socket.send_team_message("Rusty Bot is awake! <-- RustyBot")
+        except Exception as e:
+            print(f"Rusty Bot failed to connect to server. \nError: {e}")
 
     async def send_message(self, message):
         await self.socket.send_team_message(message)
 
     async def disconnect(self):
+        print("Rusty Bot disconnecting from server")
+        await self.socket.send_team_message("Rusty Bot going to sleep... <-- RustyBot")
         await self.socket.disconnect()
 
     async def listen(self):
-        await self.socket.listen()
+        await listeners.listeners(self)
 
 async def main():
     bot = RustyBot('192.248.164.111', '28088', 76561198205490971, 1102527508)
     await bot.connect()
-    # await bot.send_message("Rusty Bot connection established!")
-    
-    # events = await getMapEvents(bot.socket)
 
-    # Run listeners
-    await listeners.listeners(bot)
+    # Initialize commands
+    # await commands.commandListener(bot)
+
+    # Start listening
+    await bot.listen()
+    # await listeners.listeners(bot)
+    # await asyncio.gather(listeners.listeners(bot), commands.commandListener(bot))
     
     await bot.disconnect()
 
