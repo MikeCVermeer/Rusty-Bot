@@ -30,8 +30,9 @@ class RustyBot:
         exit()
 
     async def version(self):
-        print("Rusty Bot version: 0.1 [ALPHA]")
-        await self.socket.send_team_message("Rusty Bot version: V0.1 [Alpha] <-- RustyBot")
+        version = "V0.1.2 [ALPHA]"
+        print(f"Rusty Bot version: {version}")
+        await self.socket.send_team_message(f"Rusty Bot version: {version} <-- RustyBot")
 
     async def listen(self):
         await listeners.listeners(self)

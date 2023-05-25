@@ -1,5 +1,7 @@
 from rustplus import CommandOptions, Command, RustSocket
 from mapevents import getMapEvents
+from raidzones import getRaidZone
+from timers import setTimer
 import asyncio
 
 
@@ -21,15 +23,21 @@ async def commandListener(bot):
         await bot.version()
 
     @bot.socket.command
+    async def timer(command : Command):
+        await setTimer(bot, command.args)
+
+    @bot.socket.command
     async def help(command : Command):
         await bot.send_message("Rusty Bot commands:")
         await bot.send_message("- !help - Displays this message.")
         await bot.send_message("- !version - Displays the current version of Rusty Bot.")
-        await bot.send_message("- !pop - Displays the current server population.")
         await bot.send_message("- !disconnect - Disconnects Rusty Bot from the server.")
         await bot.send_message("- !heli - Displays the current location of the Helicopter.")
         await bot.send_message("- !chinook - Displays the current location of the Chinook.")
         await bot.send_message("- !cargo - Displays the current location of the Cargoship.")
+        await bot.send_message("- !raids - Displays all active raids on the map.")
+        await bot.send_message("- !timer [<minutes>] <seconds> [<name>] - Sets a timer for the specified amount time.")
+        await bot.send_message("- !pop - Displays the current server population.")
 
     @bot.socket.command
     async def heli(command : Command):
@@ -57,3 +65,7 @@ async def commandListener(bot):
                 await bot.send_message(f"A Cargoship is currently located at: {cargo.grid} <-- Rusty Bot")
             else:
                 await bot.send_message(f"There is no Cargoship active at this moment. <-- Rusty Bot")
+
+    @bot.socket.command
+    async def raids(command : Command):
+        await getRaidZone(bot, True)

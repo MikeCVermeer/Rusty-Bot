@@ -2,7 +2,7 @@ import math
 import string
 
 
-async def getRaidZone(bot):
+async def getRaidZone(bot, command = False):
     # Get the map data
     gameMap = await bot.get_raw_map_data()
 
@@ -43,4 +43,7 @@ async def getRaidZone(bot):
         # append this marker to filtered_markers
         filtered_markers.append(marker)
 
+        if command:
+            await bot.send_message(f"A Raid zone is currently active at: {grid} <-- Rusty Bot")
+        
     return filtered_markers
