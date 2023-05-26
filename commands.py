@@ -4,6 +4,8 @@ from raidzones import getRaidZone
 from timers import setTimer
 from events.cargoEvent import cargoEvent
 from events.chinookEvent import chinookEvent
+from events.heliEvent import heliEvent
+from mapmarkers import MapMarkers
 import asyncio
 
 
@@ -45,28 +47,28 @@ async def commandListener(bot):
 
     @bot.socket.command
     async def heli(command : Command):
-        helis = await getMapEvents(bot.socket, True, 8)
-        if len(helis) > 0:
-            for heli in helis:
-                await bot.send_message(f"A Helicopter is currently located at: {heli.grid} <-- Rusty Bot")
+        events = await heliEvent(bot)
+        if len(events) > 0:
+            for event in events:
+                await bot.send_message(f"A Helicopter is currently located at: {event.grid} <-- Rusty Bot")
         else:
             await bot.send_message(f"There is no Helicopter active at this moment. <-- Rusty Bot")
 
     @bot.socket.command
     async def chinook(command : Command):
-        chinooks = await getMapEvents(bot.socket, True, 4)
-        if len(chinooks) > 0:
-            for chinook in chinooks:
-                await bot.send_message(f"A Chinook is currently located at: {chinook.grid} <-- Rusty Bot")
+        events = await chinookEvent(bot)
+        if len(events) > 0:
+            for event in events:
+                await bot.send_message(f"A Chinook is currently located at: {event.grid} <-- Rusty Bot")
         else:
             await bot.send_message(f"There is no Chinook active at this moment. <-- Rusty Bot")
 
     @bot.socket.command
     async def cargo(command : Command):
-        cargos = await getMapEvents(bot.socket, True, 5)
-        if len(cargos) > 0:
-            for cargo in cargos:
-                await bot.send_message(f"A Cargoship is currently located at: {cargo.grid} <-- Rusty Bot")
+        events = await cargoEvent(bot, True)
+        if len(events) > 0:
+            for event in events:
+                await bot.send_message(f"Event: {event.name} is currently located at: {event.grid} <-- Rusty Bot")
         else:
             await bot.send_message(f"There is no Cargoship active at this moment. <-- Rusty Bot")
 
@@ -87,13 +89,6 @@ async def commandListener(bot):
 
     @bot.socket.command
     async def test(command : Command):
-        events = await cargoEvent(bot)
-        for event in events:
-            await bot.send_message(f"Event: {event.name} is currently located at: {event.grid} <-- Rusty Bot")
-
-    @bot.socket.command
-    async def test2(command : Command):
-        events = await chinookEvent(bot)
-        for event in events:
-            await bot.send_message(f"Event: {event.name} is currently located at: {event.grid} <-- Rusty Bot")
-            
+        monuments = await MapMarkers.initialiseMapMarkers(bot)
+        for monument in monuments.oilRigs:
+            print(monument)

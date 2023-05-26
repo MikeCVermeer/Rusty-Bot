@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import math
 import string
 
@@ -12,7 +13,7 @@ class Event:
         self.respawnTime = self.getRespawnTime(eventType = self.event)
 
     @classmethod
-    async def createEventClass(cls, bot, event, command = False):
+    async def createEventClass(cls, bot, event = None, command = False):
         self = Event(bot, event, command)
         self.events = await self.getMapEvents()
         return self
@@ -43,7 +44,7 @@ class Event:
         events = await self.bot.get_current_events()
 
         # If we didn't get any events
-        if len(events) == 0:
+        if not events:
             return events
         
         if self.command == True:
@@ -63,13 +64,11 @@ class Event:
             # Get the event location
             grid = await self.determineEventLocation(self.bot, event.x, event.y)
 
-            print(f"Event name: {event.name}, Event Location: {grid}")
-
             event.grid = grid
             event.respawnTime = self.getRespawnTime(event.type)
 
             # Prints all events - for testing purposes
-            # print(f"Event name: {event.name}, Event type: {event.type}, Event position: {event.x}, {event.y}, Event id: {event.id} Event Location: {grid}")
+            # logging.log(f"Event name: {event.name}, Event type: {event.type}, Event position: {event.x}, {event.y}, Event id: {event.id} Event Location: {grid}")
 
         return events
     
@@ -81,36 +80,48 @@ class Event:
         mapMargin = gameMap.margin
         mapHeight = gameMap.height - (2 * mapMargin) 
         mapWidth = gameMap.width - (2 * mapMargin)
-
-        # Grid size
-        gridSize = 150
         mapSize = mapWidth + mapHeight
 
         x = eventX
         y = mapSize - eventY
 
         if x < 0 or x >= mapSize or y < 0 or y >= mapSize:
-            # Calculate midpoints
-            midX = mapWidth / 2
-            midY = mapHeight / 2
+            return self.calculateQuadrant(mapWidth, mapHeight, x, y)
+        
+        return self.calculateGrid(x, y)
+    
+    def calculateGrid(self, x, y):
+        gridX = string.ascii_uppercase[math.floor(x / self.gridSize)]
+        gridY = math.floor(y / self.gridSize)
+        return f"{gridX}{gridY}"
+    
+    def calculateQuadrant(self, mapWidth, mapHeight, eventX, eventY):
+        thirdX = mapWidth / 3
+        twoThirdX = thirdX * 2
+        thirdY = mapHeight / 3
+        twoThirdY = thirdY * 2
 
-            # Determine the quadrant
-            if eventX < midX:
-                if eventY > midY:
-                    return "Top Left of the map"
-                else:
-                    return "Bottom Left of the map"
+        if thirdX <= eventX <= twoThirdX and thirdY <= eventY <= twoThirdY:
+            return "Inside Grid"
+        
+        if eventX < thirdX:
+            if eventY < thirdY:
+                return "Top left quadrant"
+            elif eventY <= twoThirdY:
+                return "Left center quadrant"
             else:
-                if eventY > midY:
-                    return "Top Right of the map"
-                else:
-                    return "Bottom Right of the map"
-
-        # Calculate the grid coordinates
-        gridX = string.ascii_uppercase[math.floor(x / gridSize)]
-        gridY = math.floor(y / gridSize) + 1
-
-        # Combine the grid coordinates
-        grid = f"{gridX}{gridY - 1}"
-
-        return grid
+                return "Bottom left quadrant"
+            
+        elif eventX <= twoThirdX:
+            if eventY < thirdY:
+                return "Top center quadrant"
+            else:
+                return "Bottom center quadrant"
+            
+        else:
+            if eventY < thirdY:
+                return "Top right quadrant"
+            elif eventY <= twoThirdY:
+                return "Right center quadrant"
+            else:
+                return "Bottom right quadrant"
