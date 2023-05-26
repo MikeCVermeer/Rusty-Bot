@@ -29,9 +29,8 @@ async def getMapEvents(bot, command = False, type = None):
     if command == True:
         # Get the event type
         if type == None:
-            # No event type was specified
-            print("ERROR: No event type was specified")
-            return events
+            # No event type was specified so look for all events
+            pass
         else:
             # Filter the events by type
             events = [event for event in events if event.type == type]
@@ -46,6 +45,7 @@ async def getMapEvents(bot, command = False, type = None):
         event.grid = grid
         event.respawnTime = TypeToRespawnTime.get(event.type, None)
 
+        # Prints all events - for testing purposes
         print(f"Event name: {event.name}, Event type: {event.type}, Event position: {event.x}, {event.y}, Event id: {event.id} Event Location: {grid}")
 
     return events

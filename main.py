@@ -45,6 +45,9 @@ class RustyBot:
     
     async def get_info(self):
         return await self.socket.get_info()
+    
+    async def get_current_events(self):
+        return await self.socket.get_current_events()
 
 async def main():
     options = CommandOptions(prefix='!')
