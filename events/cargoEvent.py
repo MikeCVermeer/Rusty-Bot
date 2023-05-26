@@ -2,6 +2,5 @@ from .event import Event
 
 
 async def cargoEvent(bot):
-    cargo = Event(bot, 5)
-    await cargo.getMapEvents()
-    return cargo
+    cargo = await Event.createEventClass(bot, 5, True)
+    return cargo.events

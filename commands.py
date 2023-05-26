@@ -3,6 +3,7 @@ from mapevents import getMapEvents
 from raidzones import getRaidZone
 from timers import setTimer
 from events.cargoEvent import cargoEvent
+from events.chinookEvent import chinookEvent
 import asyncio
 
 
@@ -86,6 +87,13 @@ async def commandListener(bot):
 
     @bot.socket.command
     async def test(command : Command):
-        event = await cargoEvent(bot)
-        await bot.send_message(f"Event: {event.name} is currently located at: {event.grid} <-- Rusty Bot")
+        events = await cargoEvent(bot)
+        for event in events:
+            await bot.send_message(f"Event: {event.name} is currently located at: {event.grid} <-- Rusty Bot")
+
+    @bot.socket.command
+    async def test2(command : Command):
+        events = await chinookEvent(bot)
+        for event in events:
+            await bot.send_message(f"Event: {event.name} is currently located at: {event.grid} <-- Rusty Bot")
             

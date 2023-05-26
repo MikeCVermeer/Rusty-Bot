@@ -1,3 +1,4 @@
+import asyncio
 import math
 import string
 
@@ -9,7 +10,12 @@ class Event:
         self.gridSize = 150
         self.name = self.getEventName(eventType = self.event)
         self.respawnTime = self.getRespawnTime(eventType = self.event)
-        self.events = self.getMapEvents()
+
+    @classmethod
+    async def createEventClass(cls, bot, event, command = False):
+        self = Event(bot, event, command)
+        self.events = await self.getMapEvents()
+        return self
 
     def getEventName(self, eventType):
         typeToName = {
