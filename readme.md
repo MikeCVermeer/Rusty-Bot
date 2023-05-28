@@ -34,8 +34,10 @@ Follow these steps to set up the project on your local machine:
 5. **Upgrade pip**
 
    Once the virtual environment is activated, you can upgrade pip using the following command:
+   ```shell
    python -m pip install --upgrade pip
-
+   ```
+   
 6. **Install Required Libraries**
 
    Now navigate back to your project directory and install the required libraries using `requirements.txt` file. Use the following command:
