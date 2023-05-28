@@ -1,3 +1,4 @@
 
 fcminformation
 *.pyc
+.env
