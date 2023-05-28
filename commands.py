@@ -30,7 +30,7 @@ async def commandListener(bot):
     async def timer(command : Command):
         await setTimer(bot, command.args)
 
-    @bot.socket.command
+    @bot.socket.command(aliases=["commands"])
     async def help(command : Command):
         await bot.send_message("Rusty Bot commands:")
         await bot.send_message("- !help - Displays this message.")
@@ -45,7 +45,7 @@ async def commandListener(bot):
 
     # TODO: verify working of commands
 
-    @bot.socket.command
+    @bot.socket.command(aliases=["helicopter", "patrolheli", "patrolhelicopter"])
     async def heli(command : Command):
         events = await heliEvent(bot)
         if len(events) > 0:
@@ -54,7 +54,7 @@ async def commandListener(bot):
         else:
             await bot.send_message(f"There is no Helicopter active at this moment. <-- Rusty Bot")
 
-    @bot.socket.command
+    @bot.socket.command(aliases=["ch47"])
     async def chinook(command : Command):
         events = await chinookEvent(bot)
         if len(events) > 0:
@@ -63,7 +63,7 @@ async def commandListener(bot):
         else:
             await bot.send_message(f"There is no Chinook active at this moment. <-- Rusty Bot")
 
-    @bot.socket.command
+    @bot.socket.command(aliases=["cargoship", "ship"])
     async def cargo(command : Command):
         events = await cargoEvent(bot, True)
         if len(events) > 0:
@@ -72,13 +72,13 @@ async def commandListener(bot):
         else:
             await bot.send_message(f"There is no Cargoship active at this moment. <-- Rusty Bot")
 
-    @bot.socket.command
+    @bot.socket.command(aliases=["raid", "raidzone", "raidzones"])
     async def raids(command : Command):
         raids = await getRaidZone(bot, True)
         if raids == False:
             await bot.send_message(f"There are no active raids at this moment. <-- Rusty Bot")
 
-    @bot.socket.command
+    @bot.socket.command(aliases=["event"])
     async def events(command : Command):
         events = await getMapEvents(bot.socket, True)
         if len(events) > 0:

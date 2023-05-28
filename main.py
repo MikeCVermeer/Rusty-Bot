@@ -51,7 +51,7 @@ class RustyBot:
 
 async def main():
     options = CommandOptions(prefix='!')
-    bot = RustyBot('192.248.164.111', '28088', 76561198205490971, -1577019259, command_options=options)
+    bot = RustyBot('192.248.164.111', '28088', 76561198205490971, 245608122, command_options=options)
     await bot.connect()
 
     # Start listening

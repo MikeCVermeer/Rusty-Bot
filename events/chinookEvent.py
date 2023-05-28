@@ -11,9 +11,12 @@ async def chinookEvent(bot, rig):
             check = await checkOilRig(bot, chinook)
 
             if check == "oil_rig_small":
-                return "Small Oil Rig"
+                await bot.send_message(f"Small Oil Rig is active! <-- Rusty Bot")
+                # chinook.grid = "Small Oil Rig"
             elif check == "large_oil_rig":
-                return "Large Oil Rig"
+                await bot.send_message(f"Large Oil Rig is active! <-- Rusty Bot")
+                # chinook.grid = "Large Oil Rig"
+                return []
             else:
                 return []
 
@@ -28,5 +31,5 @@ async def checkOilRig(bot, chinook):
 
         distance = sqrt((chinook.x - x)**2 + (chinook.y - y)**2)
 
-        if distance <= 400:
+        if distance <= 600:
             return oilRig.token

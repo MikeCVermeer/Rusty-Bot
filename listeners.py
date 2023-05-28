@@ -33,8 +33,9 @@ async def mapEventListener(bot):
                 # The event is already in the list
                 # Check if 15 minutes have passed
                 if time.time() - recordedEvent["timestamp"] >= 15*60:
-                    # 15 minutes have passed, send an update
+                    # 15 minutes have passed, send an update, and update the timestamp
                     await notificationHandlerEvents(bot, mapEvent, True, True)
+                    recordedEvent["timestamp"] = time.time()
                 break
         else:
             # The event was not in the list, add it
@@ -64,8 +65,8 @@ async def oilRigListener(bot):
     if len(oilRigs) > 0:
         for oilRig in oilRigs:
             # If the oil rig is not in the list, add it
-            if oilRig not in foundOilRigs:
-                foundOilRigs.append(oilRig)
+            if oilRig.id not in foundOilRigs:
+                foundOilRigs.append(oilRig.id)
                 await bot.send_message(f"{oilRig} active! <-- Rusty Bot")
             else:
                 # The oil rig was already found, do nothing
