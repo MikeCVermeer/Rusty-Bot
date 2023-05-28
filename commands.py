@@ -6,6 +6,7 @@ from events.cargoEvent import cargoEvent
 from events.chinookEvent import chinookEvent
 from events.heliEvent import heliEvent
 from mapmarkers import MapMarkers
+from durability import getDurability
 import asyncio
 
 
@@ -88,7 +89,5 @@ async def commandListener(bot):
             await bot.send_message(f"There are no events active at this moment. <-- Rusty Bot")
 
     @bot.socket.command
-    async def test(command : Command):
-        monuments = await MapMarkers.initialiseMapMarkers(bot)
-        for monument in monuments.oilRigs:
-            print(monument)
+    async def durability(command : Command):
+        await getDurability(bot, command.args)

@@ -1,0 +1,439 @@
+{
+    "structures": [
+        {
+            "name": "Wooden Door",
+            "raid_methods": [
+                {
+                    "method": "Handmade Shell (Eoka)",
+                    "sulfur_cost": 225,
+                    "amount": 45
+                },
+                {
+                    "method": "Bean Can Grenade",
+                    "sulfur_cost": 720,
+                    "amount": 6
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 475,
+                    "amount": 19
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 960,
+                    "amount": 2
+                }
+            ]
+        },
+        {
+            "name": "Metal Door",
+            "raid_methods": [
+                {
+                    "method": "C4",
+                    "sulfur_cost": 2200,
+                    "amount": 1
+                },
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 2800,
+                    "amount": 2
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 1575,
+                    "amount": 63
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 1920,
+                    "amount": 4
+                }
+            ]
+        },
+        {
+            "name": "Armored Door",
+            "raid_methods": [
+                {
+                    "method": "C4",
+                    "sulfur_cost": 6600,
+                    "amount": 3
+                },
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 7000,
+                    "amount": 5
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 6250,
+                    "amount": 250
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 7200,
+                    "amount": 15
+                }
+            ]
+        },
+        {
+            "name": "Garage Door",
+            "raid_methods": [
+                {
+                    "method": "C4",
+                    "sulfur_cost": 4400,
+                    "amount": 2
+                },
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 4200,
+                    "amount": 3
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 3750,
+                    "amount": 150
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 4320,
+                    "amount": 9
+                }
+            ]
+        },
+        {
+            "name": "Wood",
+            "raid_methods": [
+                {
+                    "method": "Handmade Shell (Eoka)",
+                    "sulfur_cost": 465,
+                    "amount": 93
+                },
+                {
+                    "method":"Incendiary Rocket",
+                    "sulfur_cost": 610,
+                    "amount": 1
+                },
+                {
+                    "method": "Bean Can Grenade",
+                    "sulfur_cost": 1560,
+                    "amount": 13
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 1225,
+                    "amount": 49
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 1440,
+                    "amount": 3
+                },
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 2800,
+                    "amount": 2
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 2200,
+                    "amount": 1
+                }
+            ]
+        },
+        {
+            "name": "Stone",
+            "raid_methods": [
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 4625,
+                    "amount": 185
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 4800,
+                    "amount": 10
+                },
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 5600,
+                    "amount": 4
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 4400,
+                    "amount": 2
+                }
+            ]
+        },
+        {
+            "name": "Metal",
+            "raid_methods": [
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 11525,
+                    "amount": 461
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 11040,
+                    "amount": 23
+                },
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 11200,
+                    "amount": 8
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 8800,
+                    "amount": 4
+                }
+            ]
+        },
+        {
+            "name": "Armored",
+            "raid_methods": [
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 19975,
+                    "amount": 799
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 22080,
+                    "amount": 46
+                },
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 22400,
+                    "amount": 16
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 17600,
+                    "amount": 8
+                }
+            ]
+        },
+        {
+            "name": "Wooden Wall",
+            "raid_methods": [
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 4200,
+                    "amount": 3
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 4400,
+                    "amount": 2
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 2450,
+                    "amount": 98
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 2880,
+                    "amount": 6
+                }
+            ]
+        },
+        {
+            "name": "Stone Wall",
+            "raid_methods": [
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 5600,
+                    "amount": 4
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 4400,
+                    "amount": 2
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 4625,
+                    "amount": 185
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 4800,
+                    "amount": 10
+                }
+            ]
+        },
+        {
+            "name": "Shop Front",
+            "raid_methods": [
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 8400,
+                    "amount": 6
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 6600,
+                    "amount": 3
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 7500,
+                    "amount": 300
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 8640,
+                    "amount": 18
+                }
+            ]
+        },
+        {
+            "name": "Ladder Hatch",
+            "raid_methods": [
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 2800,
+                    "amount": 2
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 2200,
+                    "amount": 1
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 1575,
+                    "amount": 63
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 1920,
+                    "amount": 4
+                }
+            ]
+        },
+        {
+            "name": "Auto Turret",
+            "raid_methods": [
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 5600,
+                    "amount": 4
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 2200,
+                    "amount": 1
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 2800,
+                    "amount": 112
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 960,
+                    "amount": 2
+                },
+                {
+                    "method": "Incendiary Rocket",
+                    "sulfur_cost": 610,
+                    "amount": 1
+                },
+                {
+                    "method": "High Velocity Rocket",
+                    "sulfur_cost": 600,
+                    "amount": 3
+                }
+            ]
+        },
+        {
+            "name": "SAM Site",
+            "raid_methods": [
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 5600,
+                    "amount": 4
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 2200,
+                    "amount": 1
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 5000,
+                    "amount": 200
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 960,
+                    "amount": 2
+                },
+                {
+                    "method": "Incendiary Rocket",
+                    "sulfur_cost": 610,
+                    "amount": 1
+                }
+            ]
+        },
+        {
+            "name": "Wind Turbine",
+            "raid_methods": [
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 2800,
+                    "amount": 2
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 2200,
+                    "amount": 1
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 2500,
+                    "amount": 100
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 3360,
+                    "amount": 7
+                }
+            ]
+        },
+        {
+            "name": "Solar Panel",
+            "raid_methods": [
+                {
+                    "method": "Rocket",
+                    "sulfur_cost": 1400,
+                    "amount": 1
+                },
+                {
+                    "method": "C4",
+                    "sulfur_cost": 2200,
+                    "amount": 1
+                },
+                {
+                    "method": "Explosive ammo",
+                    "sulfur_cost": 875,
+                    "amount": 35
+                },
+                {
+                    "method": "Satchel Charge",
+                    "sulfur_cost": 960,
+                    "amount": 2
+                },
+                {
+                    "method": "Incendiary Rocket",
+                    "sulfur_cost": 610,
+                    "amount": 1
+                }
+            ]
+        }
+    ]
+}
