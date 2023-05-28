@@ -5,6 +5,7 @@ import commands
 
 class RustyBot:
     def __init__(self, ip, port, steamid, playertoken, command_options):
+        self.version = "V0.3.2 [ALPHA]"
         self.ip = ip
         self.port = port
         self.steamid = steamid
@@ -16,6 +17,7 @@ class RustyBot:
         try:
             await self.socket.connect()
             print("Rusty Bot connected to server")
+            print(f"Running Rusty Bot version: {self.version}")
             await self.socket.send_team_message("Rusty Bot is awake! <-- RustyBot")
         except Exception as e:
             print(f"Rusty Bot failed to connect to server. \nError: {e}")
@@ -30,9 +32,8 @@ class RustyBot:
         exit()
 
     async def version(self):
-        version = "V0.1.2 [ALPHA]"
-        print(f"Rusty Bot version: {version}")
-        await self.socket.send_team_message(f"Rusty Bot version: {version} <-- RustyBot")
+        print(f"Rusty Bot version: {self.version}")
+        await self.socket.send_team_message(f"Rusty Bot version: {self.version} <-- RustyBot")
 
     async def listen(self):
         await listeners.listeners(self)

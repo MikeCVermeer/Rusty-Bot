@@ -42,6 +42,8 @@ async def commandListener(bot):
         await bot.send_message("- !cargo - Displays the current location of the Cargoship.")
         await bot.send_message("- !raids - Displays all active raids on the map.")
         await bot.send_message("- !timer [<minutes>] <seconds> [<name>] - Sets a timer for the specified amount time.")
+        await bot.send_message("- !events - Displays all active events on the map.")
+        await bot.send_message("- !durability <structure> - Displays the raid methods for the specified structure.")
         await bot.send_message("- !pop - Displays the current server population.")
 
     # TODO: verify working of commands
