@@ -1,6 +1,8 @@
 import math
 import string
+import time
 
+timeRaidZone = []
 
 async def getRaidZone(bot, command = False):
     # Get the map data
@@ -42,8 +44,24 @@ async def getRaidZone(bot, command = False):
         
         # append this marker to filtered_markers
         filtered_markers.append(marker)
+        # Add this marker to the timeRaidZone list with the current timestamp if it doesn't already exist
+        for raid in timeRaidZone:
+            if raid['raid'].grid == grid:
+                break
+        else:
+            timeRaidZone.append({"raid": marker, "timestamp": time.time()})
+
 
         if command:
-            await bot.send_message(f"A Raid zone is currently active at: {grid} <-- Rusty Bot")
+            for raid in timeRaidZone:
+                if raid['raid'].grid == grid:
+                    # Get the elapsed time
+                    elapsed_time = time.time() - raid['timestamp']
+
+                    # Convert elapsed time to minutes and seconds
+                    minutes, seconds = divmod(elapsed_time, 60)
+                    
+                    # Format the message
+                    await bot.send_message(f"A Raidzone is currently active at {grid}. First appeared {int(minutes)} minutes and {int(seconds)} seconds ago. <-- Rusty Bot")
         
     return filtered_markers

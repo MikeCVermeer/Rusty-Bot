@@ -59,20 +59,3 @@ async def raidListener(bot):
     return
 
 foundOilRigs = []
-
-# async def oilRigListener(bot):
-#     oilRigs = await chinookEvent(bot, True)
-#     if len(oilRigs) > 0:
-#         for oilRig in oilRigs:
-#             # If the oil rig is not in the list, add it
-#             if oilRig.id not in foundOilRigs:
-#                 foundOilRigs.append(oilRig.id)
-#                 await bot.send_message(f"{oilRig} active! <-- Rusty Bot")
-#             else:
-#                 # The oil rig was already found, do nothing
-#                 pass
-#     else:
-#         # There are no oil rigs active, do nothing
-#         pass
-
-#     return
