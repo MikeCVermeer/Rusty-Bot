@@ -46,7 +46,7 @@ async def getRaidZone(bot, command = False):
         filtered_markers.append(marker)
         # Add this marker to the timeRaidZone list with the current timestamp if it doesn't already exist
         for raid in timeRaidZone:
-            if raid['raid'].grid == grid:
+            if raid['raid'].id == marker.id:
                 break
         else:
             timeRaidZone.append({"raid": marker, "timestamp": time.time()})
@@ -54,7 +54,7 @@ async def getRaidZone(bot, command = False):
 
         if command:
             for raid in timeRaidZone:
-                if raid['raid'].grid == grid:
+                if raid['raid'].id == marker.id:
                     # Get the elapsed time
                     elapsed_time = time.time() - raid['timestamp']
 

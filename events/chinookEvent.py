@@ -3,6 +3,7 @@ from .event import Event
 from mapmarkers import MapMarkers
 
 
+
 async def chinookEvent(bot):
     chinook = await Event.createEventClass(bot, 4, True)
 

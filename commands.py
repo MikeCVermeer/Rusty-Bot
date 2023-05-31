@@ -13,24 +13,7 @@ import asyncio
 options = CommandOptions(prefix='!')
 
 async def commandListener(bot):
-
-    @bot.socket.command
-    async def disconnect(command : Command):
-        await bot.disconnect()
-
-    @bot.socket.command
-    async def pop(command : Command):
-        info = await bot.get_info()
-        await bot.send_message(f"Current server population is: {info.players} / {info.max_players} players. <-- Rusty Bot")
-
-    @bot.socket.command
-    async def version(command : Command):
-        await bot.version()
-
-    @bot.socket.command
-    async def timer(command : Command):
-        await setTimer(bot, command.args)
-
+    ### Help Commands ###
     @bot.socket.command(aliases=["commands"])
     async def help(command : Command):
         await bot.send_message("Rusty Bot commands:")
@@ -46,8 +29,30 @@ async def commandListener(bot):
         await bot.send_message("- !durability <structure> - Displays the raid methods for the specified structure.")
         await bot.send_message("- !pop - Displays the current server population.")
 
-    # TODO: verify working of commands
+    ### General Commands ###
+    @bot.socket.command
+    async def disconnect(command : Command):
+        await bot.disconnect()
 
+    @bot.socket.command(aliases=["players", "population"])
+    async def pop(command : Command):
+        info = await bot.get_info()
+        await bot.send_message(f"Current server population is: {info.players} / {info.max_players} players. <-- Rusty Bot")
+
+    @bot.socket.command
+    async def version(command : Command):
+        await bot.version()
+
+
+
+    ### Utility Commands ###
+    @bot.socket.command(aliases=["timer", "timers"])
+    async def timer(command : Command):
+        await setTimer(bot, command.args)
+
+
+
+    ### Map Event Commands ###
     @bot.socket.command(aliases=["helicopter", "patrolheli", "patrolhelicopter"])
     async def heli(command : Command):
         events = await heliEvent(bot)
@@ -90,6 +95,9 @@ async def commandListener(bot):
         else:
             await bot.send_message(f"There are no events active at this moment. <-- Rusty Bot")
 
-    @bot.socket.command
+
+
+    ### Raid Commands ###
+    @bot.socket.command(aliases=["dura", "raidcost"])
     async def durability(command : Command):
         await getDurability(bot, command.args)

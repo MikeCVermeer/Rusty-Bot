@@ -5,7 +5,7 @@ import commands
 
 class RustyBot:
     def __init__(self, ip, port, steamid, playertoken, command_options):
-        self.version = "V0.3.2 [ALPHA]"
+        self.version = "V0.3.3 [ALPHA]"
         self.ip = ip
         self.port = port
         self.steamid = steamid
@@ -18,7 +18,8 @@ class RustyBot:
             await self.socket.connect()
             print("Rusty Bot connected to server")
             print(f"Running Rusty Bot version: {self.version}")
-            await self.socket.send_team_message("Rusty Bot is awake! <-- RustyBot")
+            await self.socket.send_team_message("Rusty Bot is waking up! <-- RustyBot")
+            await asyncio.sleep(3)
         except Exception as e:
             print(f"Rusty Bot failed to connect to server. \nError: {e}")
 
@@ -36,7 +37,8 @@ class RustyBot:
         await self.socket.send_team_message(f"Rusty Bot version: {self.version} <-- RustyBot")
 
     async def listen(self):
-        await listeners.listeners(self)
+        # await listeners.listeners(self)
+        await asyncio.gather(listeners.listeners(self), listeners.raidListener(self), commands.commandListener(self))
 
     async def get_raw_map_data(self):
         return await self.socket.get_raw_map_data()
@@ -56,7 +58,7 @@ async def main():
     await bot.connect()
 
     # Start listening
-    await asyncio.gather(bot.listen(), listeners.raidListener(bot), commands.commandListener(bot))
+    await asyncio.gather(bot.listen())
     
     await bot.disconnect()
 

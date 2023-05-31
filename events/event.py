@@ -35,7 +35,7 @@ class Event:
             4: 90,
             5: 30,
             6: None,
-            8: 120,
+            8: 90,
         }
 
         return TypeToRespawnTime.get(eventType, None)
