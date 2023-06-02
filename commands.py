@@ -65,7 +65,8 @@ async def commandListener(bot):
     @bot.socket.command(aliases=["ch47"])
     async def chinook(command : Command):
         events = await chinookEvent(bot)
-        if len(events) > 0:
+        # if len(events) > 0:
+        if events != None:
             for event in events:
                 await bot.send_message(f"A Chinook is currently located at: {event.grid} <-- Rusty Bot")
         else:
@@ -73,7 +74,7 @@ async def commandListener(bot):
 
     @bot.socket.command(aliases=["cargoship", "ship"])
     async def cargo(command : Command):
-        events = await cargoEvent(bot, True)
+        events = await cargoEvent(bot)
         if len(events) > 0:
             for event in events:
                 await bot.send_message(f"Event: {event.name} is currently located at: {event.grid} <-- Rusty Bot")

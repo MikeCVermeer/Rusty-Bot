@@ -5,7 +5,7 @@ import commands
 
 class RustyBot:
     def __init__(self, ip, port, steamid, playertoken, command_options):
-        self.version = "V0.3.3 [ALPHA]"
+        self.versionNumber = "V0.3.3 [ALPHA]"
         self.ip = ip
         self.port = port
         self.steamid = steamid
@@ -17,7 +17,7 @@ class RustyBot:
         try:
             await self.socket.connect()
             print("Rusty Bot connected to server")
-            print(f"Running Rusty Bot version: {self.version}")
+            print(f"Running Rusty Bot version: {self.versionNumber}")
             await self.socket.send_team_message("Rusty Bot is waking up! <-- RustyBot")
             await asyncio.sleep(3)
         except Exception as e:
@@ -29,12 +29,15 @@ class RustyBot:
     async def disconnect(self):
         print("Rusty Bot disconnecting from server")
         await self.socket.send_team_message("Rusty Bot going to sleep... <-- RustyBot")
+        # End all tasks
+        for task in asyncio.all_tasks():
+            task.cancel()
         await self.socket.disconnect()
         exit()
 
     async def version(self):
-        print(f"Rusty Bot version: {self.version}")
-        await self.socket.send_team_message(f"Rusty Bot version: {self.version} <-- RustyBot")
+        print(f"Rusty Bot version: {self.versionNumber}")
+        await self.socket.send_team_message(f"Rusty Bot version: {self.versionNumber} <-- RustyBot")
 
     async def listen(self):
         # await listeners.listeners(self)
