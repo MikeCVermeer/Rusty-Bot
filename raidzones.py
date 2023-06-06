@@ -2,6 +2,8 @@ import math
 import string
 import time
 
+from databasehandler import storeRaidData
+
 timeRaidZone = []
 
 async def getRaidZone(bot, command = False):
@@ -49,7 +51,9 @@ async def getRaidZone(bot, command = False):
             if raid['raid'].id == marker.id:
                 break
         else:
-            timeRaidZone.append({"raid": marker, "timestamp": time.time()})
+            markerTime = time.time()
+            storeRaidData(marker, markerTime)
+            timeRaidZone.append({"raid": marker, "timestamp": markerTime})
 
 
         if command:

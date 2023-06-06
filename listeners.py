@@ -1,10 +1,13 @@
 import asyncio
 import time
+from databaseHandler import updateRaidData
 from mapevents import getMapEvents
 from raidzones import getRaidZone
 from notificationhandler import notificationHandlerEvents, notificationHandlerRaids
 from events.event import Event
 from events.chinookEvent import chinookEvent
+from teaminfo import getTeamInfo
+
 
 async def listeners(bot):
     await asyncio.sleep(5)
@@ -12,9 +15,9 @@ async def listeners(bot):
     # Listener loop
     while True:
         # Check for events on the map
-        await asyncio.gather(mapEventListener(bot), raidListener(bot))
+        await asyncio.gather(mapEventListener(bot), raidListener(bot), teamListener(bot))
 
-        # Sleep for 10 seconds
+        # Sleep for 15 seconds
         await asyncio.sleep(15)
 
     return
@@ -23,6 +26,8 @@ async def listeners(bot):
 lastMapEvents = []
 
 # Check for events on the map
+
+
 async def mapEventListener(bot):
     mapEvents = await Event.createEventClass(bot)
 
@@ -42,7 +47,34 @@ async def mapEventListener(bot):
             lastMapEvents.append({"event": mapEvent, "timestamp": time.time()})
             await notificationHandlerEvents(bot, mapEvent, True)
 
+
+activeRaidZones = []
+
+async def newRaidListener(bot):
+    raids = await getRaidZone(bot)
+
+    for activeRaid in activeRaidZones:
+        if activeRaid not in raids:
+            # Raid is no longer active
+            # TODO: Remove raid from array
+            updateRaidData(activeRaid)
+        else:
+            # Raid is still active
+            pass
+
+    for newRaid in raids:
+        # If the raid is not in the list, add it
+        if newRaid not in activeRaidZones:
+            activeRaidZones.append(newRaid)
+            await notificationHandlerRaids(bot, newRaid)
+        else:
+            # The raid was already found in active raids
+            pass
+
+    return
+
 foundRaidZones = []
+
 
 async def raidListener(bot):
     raids = await getRaidZone(bot)
@@ -58,4 +90,11 @@ async def raidListener(bot):
 
     return
 
+
 foundOilRigs = []
+
+
+async def teamListener(bot):
+    teamData = await getTeamInfo(bot)
+
+    return
