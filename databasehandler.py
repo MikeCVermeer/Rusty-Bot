@@ -21,7 +21,7 @@ def storePlayerData(playerData):
     data = {'steamId': steam_id, 'username': name, 'isOnline': is_online, 'spawnTime': spawn_time,
             'isAlive': is_alive, 'deathTime': death_time, 'cords': {'x': xCords, 'y': yCords}}
 
-    db.collection('playerData').add(data)
+    # db.collection('playerData').add(data)
 
     return
 
@@ -34,7 +34,7 @@ def storeRaidData(raidData, raidTime):
 
     data = {'startDate': raidTime, 'isActive': is_active, 'cords': {'x': xCords, 'y': yCords}}
 
-    db.collection('raids').document(str(raid_id)).set(data)
+    # db.collection('raids').document(str(raid_id)).set(data)
 
     return
 
@@ -44,6 +44,6 @@ def updateRaidData(raidData):
 
     data = {'isActive': is_active}
 
-    db.collection('raids').document(str(raid_id)).set(data)
+    # db.collection('raids').document(str(raid_id)).set(data)
 
     return

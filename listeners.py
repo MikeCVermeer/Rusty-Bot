@@ -1,6 +1,6 @@
 import asyncio
 import time
-from databaseHandler import updateRaidData
+from databasehandler import updateRaidData
 from mapevents import getMapEvents
 from raidzones import getRaidZone
 from notificationhandler import notificationHandlerEvents, notificationHandlerRaids
