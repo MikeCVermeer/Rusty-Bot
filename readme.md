@@ -18,7 +18,9 @@ Rusty Bot leverages the Rust+ API to introduce a series of functionalities aimed
 
 Rusty Bot stands out for its simplicity, effectiveness, and the practical value it brings to the Rust gameplay. It's a testament to what can be achieved with a passion for gaming and a bit of coding knowledge.
 
+## Project Status
 
+**Note:** This project is not receiving updates for the foreseeable future, and it may indefinitely remain in its current state as it was initially developed as a hobby project. Due to the nature of ongoing game development and updates to Rust and the Rust+ API, Rusty Bot may not function as intended anymore. It remains available for educational purposes and as a foundation for those who might wish to adapt its principles to current or future versions of Rust.
 
 ## Project Setup
 
