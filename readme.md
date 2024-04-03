@@ -1,3 +1,25 @@
+# Rusty Bot: Your Companion for Enhanced Rust Gameplay
+
+## Overview
+
+Rusty Bot is a Python-based tool designed to connect with the Rust game through the official Rust+ API and Companion App. As a hobby project turned essential in-game utility, Rusty Bot offers Rust players real-time data and interactive capabilities, enhancing the overall gameplay experience without compromising the game's integrity or fair play.
+
+## Understanding Rust+
+
+Rust+ is an official companion app for the survival game Rust, developed by Facepunch Studios. It facilitates out-of-game interactions by allowing players to receive alerts about in-game events, control devices within their bases, and communicate with teammates. The Rust+ API provides a gateway for external applications like Rusty Bot to interact with the game's server, enriching the player's experience with additional layers of interaction and control.
+
+## Features of Rusty Bot
+
+Rusty Bot leverages the Rust+ API to introduce a series of functionalities aimed at making the Rust gaming experience more immersive and manageable:
+
+- **Real-Time Notifications:** Players can receive instant notifications for specific events happening within the game, such as attacks on their bases or significant in-game occurrences.
+- **In-Game Chat Commands:** Through simple commands entered into the in-game chat, players can engage with Rusty Bot to perform tasks like querying current game states or setting reminders, all designed to enhance strategic gameplay.
+- **Automated Responses and Actions:** Rusty Bot can execute predefined actions based on specific game events or player commands, helping to manage routine tasks or alerts efficiently.
+
+Rusty Bot stands out for its simplicity, effectiveness, and the practical value it brings to the Rust gameplay. It's a testament to what can be achieved with a passion for gaming and a bit of coding knowledge.
+
+
+
 ## Project Setup
 
 Follow these steps to set up the project on your local machine:
