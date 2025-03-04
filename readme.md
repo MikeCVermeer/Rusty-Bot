@@ -1,5 +1,8 @@
 # Rusty Bot: Your Companion for Enhanced Rust Gameplay
 
+> [!WARNING]  
+> This is no longer under development.
+
 ## Overview
 
 Rusty Bot is a Python-based tool designed to connect with the Rust game through the official Rust+ API and Companion App. As a hobby project turned essential in-game utility, Rusty Bot offers Rust players real-time data and interactive capabilities, enhancing the overall gameplay experience without compromising the game's integrity or fair play.
